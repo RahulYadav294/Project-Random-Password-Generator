@@ -1,0 +1,37 @@
+
+import java.util.Random;
+public class HelloWorld {
+    public static void main(String[] args) {
+        int passwordLength = 10;
+        String password = generateRandomPassword(passwordLength , true,true,true,true);
+        System.out.println("The random Generated Passsword is :" + password);
+    }
+    public static String generateRandomPassword(int length,boolean addUpperCase,boolean addLowerCase,boolean addDigit, boolean addSpecialCharacter){
+StringBuilder allCharacters = new StringBuilder();
+if(addUpperCase) {
+    allCharacters.append("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+}
+    if(addLowerCase) {
+        allCharacters.append("abcdefghijklmnopqrstuvwxyz");
+    }
+   if(addDigit) {
+       allCharacters.append("0123456789");
+   }
+   if(addSpecialCharacter){
+       allCharacters.append("!@#$%^&*()-_=+<>?");
+   }
+
+        if (allCharacters.length() == 0) {
+            return "No characters selected for password generation!";
+        }
+    Random random = new Random();
+    StringBuilder password = new StringBuilder(length);
+
+    for(int i = 0; i<length;i++) {
+        int position = random.nextInt(allCharacters.length());
+        password.append(allCharacters.charAt(position));
+    }
+    return password.toString();
+}
+
+}
